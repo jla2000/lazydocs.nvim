@@ -26,13 +26,13 @@ function M.find_child_node(node, type)
 	return nil
 end
 
-function M.get_child_by_name(parent, name)
-	for child, field in parent:iter_children() do
-		if field == name then
+function M.get_child_by_field(node, field)
+	for child, child_field in node:iter_children() do
+		if child_field == field then
 			return child
 		end
 
-		local nested = M.get_child_by_name(child, name)
+		local nested = M.get_child_by_field(child, field)
 		if nested ~= nil then
 			return nested
 		end
