@@ -34,6 +34,7 @@ end
 
 M.setup = function()
 	local null_ls = require("null-ls")
+
 	local luasnip = require("luasnip")
 
 	null_ls.register({
@@ -53,22 +54,35 @@ M.setup = function()
 						action = function()
 							local indent = string.rep(" ", vim.fn.indent(params.row))
 
-							local comment = {
-								indent .. "/*!",
-								indent .. " * \\brief",
+							local snippet_body = {
+								luasnip.text_node({ indent .. "/*!", indent .. " * \\brief " }),
+								luasnip.insert_node(1, "<Function description>"),
 							}
 
+							local insert_index = 2
+
 							for _, param in ipairs(declaration.parameters) do
-								table.insert(comment, indent .. " * \\param[in] " .. param)
+								table.insert(
+									snippet_body,
+									luasnip.text_node({ "", indent .. " * \\param[in] " .. param .. " " })
+								)
+								table.insert(snippet_body, luasnip.insert_node(insert_index, "<Parameter description>"))
+								insert_index = insert_index + 1
 							end
 
 							if declaration.has_return then
-								table.insert(comment, indent .. " * \\return ")
+								table.insert(snippet_body, luasnip.text_node({ "", indent .. " * \\return " }))
+								table.insert(
+									snippet_body,
+									luasnip.insert_node(insert_index, "<Return value description>")
+								)
 							end
 
-							table.insert(comment, indent .. " */")
+							table.insert(snippet_body, luasnip.text_node({ "", indent .. " */" }))
 
-							vim.fn.append(params.row - 1, comment)
+							vim.fn.append(params.row - 1, "")
+							vim.cmd("norm! k")
+							luasnip.snip_expand(luasnip.snippet("", snippet_body))
 						end,
 					})
 				end
