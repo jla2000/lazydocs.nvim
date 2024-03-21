@@ -1,9 +1,9 @@
-# lazydocs.nvim 
+# lazydocs.nvim
 
 Neovim plugin that generates doxygen comments based on treesitter info. (Currently, only C++ is supported)
 When you put your cursor on a C++ function declaration or definition, you will have a code action available to generate a doxygen comment.
 
-Please feel free to create PR's or Issues. Any help is appreciated.
+Please feel free to create PR's or Issues. Any help is appreciated.
 
 ## Dependencies
 
