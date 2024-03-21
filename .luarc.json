@@ -1,0 +1,5 @@
+{
+    "diagnostics.globals": [
+        "get_child_by_name"
+    ]
+}
