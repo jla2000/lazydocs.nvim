@@ -23,8 +23,12 @@ Neovim plugin that generates doxygen formats. (Currently, only C++ is supported)
 }
 ```
 
-## Manually
+### Manually
 
 ```lua
 require("lazydocs").setup()
 ```
+
+## Demo
+
+TODO
