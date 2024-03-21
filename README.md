@@ -34,4 +34,4 @@ require("lazydocs").setup()
 
 ## Demo
 
-![Demo](https://github.com/jla2000/lazydocs.nvim?branch=gif/demo.gif)
+![Demo](https://github.com/jla2000/lazydocs.nvim/blob/gif/demo.gif)
